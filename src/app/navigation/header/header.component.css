@@ -18,3 +18,8 @@ a:active {
   display: inline-block;
   padding-left: 6px;
 }
+
+.icon {
+  font-size: xx-large;
+  transform: scale(1.4);
+}
