@@ -28,6 +28,7 @@ export class TrainingService {
         .snapshotChanges()
         .pipe(
           map(docArray => {
+            // throw new Error();
             return docArray.map(doc => {
               return {
                 id: doc.payload.doc.id,
@@ -36,11 +37,22 @@ export class TrainingService {
             });
           })
         )
-        .subscribe((exercises: Exercise[]) => {
-          this.uiService.loadingStateChanged.next(false);
-          this.availableExercises = exercises;
-          this.exercisesChanged.next([...this.availableExercises]);
-        })
+        .subscribe(
+          (exercises: Exercise[]) => {
+            this.uiService.loadingStateChanged.next(false);
+            this.availableExercises = exercises;
+            this.exercisesChanged.next([...this.availableExercises]);
+          },
+          error => {
+            this.uiService.loadingStateChanged.next(false);
+            this.uiService.showSnackBar(
+              'Fetching exercises failed, try again later',
+              null,
+              3000
+            );
+            this.exercisesChanged.next(null);
+          }
+        )
     );
   }
 
