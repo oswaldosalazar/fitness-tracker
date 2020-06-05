@@ -3,13 +3,15 @@ import {
   CanActivate,
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
-  Router
+  Router,
+  CanLoad,
+  Route
 } from '@angular/router';
 
 import { AuthService } from './auth.service';
 
 @Injectable()
-export class AuthGuard implements CanActivate {
+export class AuthGuard implements CanActivate, CanLoad {
   constructor(
     private authService: AuthService,
     private router: Router
@@ -19,6 +21,14 @@ export class AuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ) {
+    if (this.authService.isAuth()) {
+      return true;
+    } else {
+      this.router.navigate(['/login']);
+    }
+  }
+
+  canLoad(routes: Route) {
     if (this.authService.isAuth()) {
       return true;
     } else {
