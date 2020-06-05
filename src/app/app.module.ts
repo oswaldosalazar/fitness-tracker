@@ -5,6 +5,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from './material.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 import { AppComponent } from './app.component';
 import { WelcomeComponent } from './welcome/welcome.component';
@@ -16,8 +17,6 @@ import { TrainingService } from './training/training.service';
 import { UIService } from './shared/ui.service';
 
 import { AuthModule } from './auth/auth.module';
-import { TrainingModule } from './training/training.module';
-import { SharedModule } from './shared/shared.module';
 
 import { environment } from '../environments/environment';
 
@@ -36,8 +35,7 @@ import { environment } from '../environments/environment';
     FlexLayoutModule,
     AngularFireModule.initializeApp(environment.firebase),
     AuthModule,
-    TrainingModule,
-    SharedModule
+    AngularFirestoreModule
   ],
   providers: [AuthService, TrainingService, UIService],
   bootstrap: [AppComponent]

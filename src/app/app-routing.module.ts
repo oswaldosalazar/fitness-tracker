@@ -3,15 +3,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
 
 import { WelcomeComponent } from './welcome/welcome.component';
-import { TrainingComponent } from './training/training.component';
 
 const routes: Routes = [
   { path: '', component: WelcomeComponent },
-
   {
     path: 'training',
-    component: TrainingComponent,
-    canActivate: [AuthGuard]
+    loadChildren: () =>
+      import('./training/training.module').then(m => m.TrainingModule)
   }
 ];
 
