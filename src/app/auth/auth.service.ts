@@ -21,7 +21,7 @@ export class AuthService {
     private uiService: UIService
   ) {}
 
-  initAuthLisener() {
+  initAuthListener() {
     this.afAuth.authState.subscribe(user => {
       if (user) {
         this.isAuthenticated = true;
