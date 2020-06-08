@@ -14,7 +14,6 @@ import * as fromRoot from '../../app.reducer';
 })
 export class SignupComponent implements OnInit {
   maxDate;
-  // isLoading = false;
   isLoading$: Observable<boolean>;
 
   constructor(
